@@ -26,7 +26,6 @@
 
 // Constraints:
 
-
 var lengthOfLongestSubstring = function(s) {
   if (s.length === 0) {
     return 0;
@@ -35,16 +34,28 @@ var lengthOfLongestSubstring = function(s) {
   let longest = 0;
   let charMap = {};
   for (let i = 0; i < s.length; i++) {
-    let char = s[i]
-    if (charMap[char]) {
-      longest = (longest > curCount ? longest : curCount);
-      charMap = {};
-      charMap[char] = char
-      curCount = 1;
-    } else {
-      curCount++;
-      charMap[char] = char;
+    charMap = {};
+    let char = s[i];
+    charMap[char] = char;
+    curCount++;
+    for (let j = i + 1; j < s.length; j++) {
+      let newChar = s[j];
+      if (charMap[newChar]) {
+        longest = (longest > curCount ? longest : curCount);
+        charMap = {};
+        curCount = 0;
+        break;
+      } else {
+        curCount++;
+        charMap[newChar] = newChar;
+      }
+      if (j === s.length - 1) {
+        charMap = {};
+        longest = (longest > curCount ? longest : curCount);
+        curCount = 0;
+      }
     }
   }
+  longest = (longest > curCount ? longest : curCount);
   return longest;
 };
