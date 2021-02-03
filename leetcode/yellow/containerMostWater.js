@@ -44,3 +44,21 @@ var maxArea = function(height) {
   }
   return largest;
 };
+
+var maxArea = function(height) {
+  let largest = 0;
+  let start = 0;
+  let end = height.length - 1;
+  let area;
+
+  while (start < end) {
+    area = Math.min(height[start], height[end]) * (end - start);
+    if (height[start] <= height[end]) {
+      start++;
+    } else {
+      end--;
+    }
+    largest = Math.max(largest, area);
+  }
+  return largest;
+}
