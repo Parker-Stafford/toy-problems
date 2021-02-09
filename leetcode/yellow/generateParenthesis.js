@@ -19,7 +19,10 @@
 var generateParenthesis = function(n) {
   const result = [];
   function generator(string, left, right) {
-
+    if (left === n && right === n) {
+      result.push(string);
+      return;
+    }
     // add a left
     if (left < n) {
       generator(string + '(', left + 1, right)
@@ -27,9 +30,6 @@ var generateParenthesis = function(n) {
     // add a right
     if (right < n && right < left) {
       generator(string + ')', left, right + 1)
-    }
-    if (left === n && right === n) {
-      result.push(string);
     }
   }
   generator('', 0, 0)
