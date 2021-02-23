@@ -32,7 +32,15 @@
  * @param {number[]} nums
  */
 var NumArray = function(nums) {
-  this.nums = nums;
+  nums;
+  this.sums = [];
+  for (let i = 0; i < nums.length; i++) {
+    if (i === 0) {
+      this.sums.push(nums[i]);
+    } else {
+      this.sums.push(this.sums[i - 1] + nums[i]);
+    }
+  }
 };
 
 /**
@@ -41,11 +49,7 @@ var NumArray = function(nums) {
  * @return {number}
  */
 NumArray.prototype.sumRange = function(i, j) {
-  let sum = 0;
-  for (let k = i; k <= j; k++) {
-    sum += this.nums[k];
-  }
-  return sum;
+  return this.sums[j] - this.sums[i];
 };
 
 /**
