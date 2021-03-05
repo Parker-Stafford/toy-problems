@@ -14,23 +14,23 @@
 // Output: "f"
 
 // Input:
-// letters = ["c", "f", "j"]
-// target = "d"
+// var letters = ["c", "f", "j"]
+// var target = "d"
 // Output: "f"
 
 // Input:
-// letters = ["c", "f", "j"]
-// target = "g"
+// var letters = ["c", "f", "j"]
+// var target = "g"
 // Output: "j"
 
 // Input:
-// letters = ["c", "f", "j"]
-// target = "j"
+// var letters = ["c", "f", "j"]
+// var target = "j"
 // Output: "c"
 
 // Input:
-// letters = ["c", "f", "j"]
-// target = "k"
+// var letters = ["c", "f", "j"]
+// var target = "k"
 // Output: "c"
 
 /**
@@ -38,22 +38,30 @@
  * @param {character} target
  * @return {character}
  */
-var nextGreatestLetter = function(letters, target) {
-
+ var nextGreatestLetter = function(letters, target) {
   let start = 0;
   let end = letters.length - 1;
   let half = Math.floor((start + end) / 2);
   while(start < end) {
     if (letters[half] === target) {
-      return letters[half + 1] ? letters[half + 1] : letters[0];
+      if (letters[half + 1] !== target) {
+        return letters[half + 1] ? letters[half + 1] : letters[0];
+      }
+      half++;
+      continue;
     }
     if (letters[half] < target) {
+      if (target < letters[half + 1]) {
+        return letters[half + 1];
+      }
       start = half + 1;
-      half = (start + end) / 2;
     } else {
+      if (target >= letters[half -1]) {
+        return letters[half];
+      }
       end = half - 1;
-      half = (start + end) / 2;
     }
+    half = Math.floor((start + end) / 2);
   }
   return letters[0];
 };
