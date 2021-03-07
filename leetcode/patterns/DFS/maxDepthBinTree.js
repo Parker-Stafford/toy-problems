@@ -34,6 +34,8 @@
  * @param {TreeNode} root
  * @return {number}
  */
+
+// inner function recursion
  var maxDepth = function(root) {
   if (!root) {
     return 0;
@@ -57,6 +59,7 @@
   return max;
 };
 
+// no inner function recursion
 var maxDepth = function (root) {
   if (!root) {
     return 0;
