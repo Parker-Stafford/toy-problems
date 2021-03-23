@@ -28,6 +28,8 @@
  * @param {string} T
  * @return {boolean}
  */
+
+ // while loop build with array
 var backspaceCompare = function(S, T) {
   let sString = [];
   let tString = [];
@@ -48,6 +50,7 @@ var backspaceCompare = function(S, T) {
   return sString.join('') === tString.join('');
 };
 
+// inner function build with array
 var backspaceCompare = function(S, T) {
   function build(string) {
     let result = [];
@@ -63,6 +66,7 @@ var backspaceCompare = function(S, T) {
   return (build(S) === build(T));
 }
 
+// reverser iteration build no array
 var backspaceCompare = function(S, T) {
   function build(string) {
     let result = '';
