@@ -33,12 +33,12 @@
   while (first <= last) {
     let j = 0;
     for (let i = first; i < last; i++) {
-      // get temp (ur)
+      // store temp values
       let ul = matrix[first][i];
       let ur = matrix[i][last];
       let bl = matrix[last - j][first]
       let br = matrix[last][last - j];
-      // swap ul with ur
+      // swap values
       matrix[first][i] = bl;
       matrix[i][last] = ul;
       matrix[last - j][first] = br;
@@ -49,9 +49,3 @@
     last--;
   }
 };
-
-let array = [1,2,3]
-let x = array[0]
-
-array[0] = 2;
-console.log(array, x)
