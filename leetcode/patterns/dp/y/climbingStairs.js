@@ -52,14 +52,33 @@ var climbStairs = function(n) {
   return solutions[n];
 }
 
-// DP solution bottom down memoization
+
+// Constant space pointers
+var climbStairs = function(n) {
+  if (n <= 2) {
+    return n;
+  }
+  let prev = 1;
+  let current = 2;
+  for (let i = 3; i <= n; i++) {
+    let temp = current;
+    current = current + prev;
+    prev = temp;
+  }
+  return current;
+}
+
+// DP solution top down memoization
 var climbStairs = function(n) {
   const memo = [];
   function climber(n) {
     if (n <= 2) {
       return n;
     }
-    memo[n] = memo[n - 1] + memo[n - 2]
+    if (memo[n]) {
+      return memo[n];
+    }
+    memo[n] = climber(n - 1) + climber(n - 2)
     return memo[n]
   }
   return climber(n);
