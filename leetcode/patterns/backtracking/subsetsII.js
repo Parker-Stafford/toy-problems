@@ -36,3 +36,18 @@
   backtracker();
   return Array.from(result.values());
 };
+
+// sort and check current num against previous num
+var subsetsWithDup = function(nums) {
+  const result = [];
+  nums.sort();
+  function backtracker(start, s) {
+    result.push(s);
+    for (let i = start; i < nums.length; i++) {
+      if (i > start && nums[i] === nums[i - 1]) continue;
+      backtracker(i + 1, [...s, nums[i]]);
+    }
+  }
+  backtracker(0, []);
+  return result;
+}
