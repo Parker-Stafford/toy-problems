@@ -50,3 +50,28 @@ var permuteUnique = function(nums) {
 };
 
 // only valid permuations
+
+function permuteUnique(nums) {
+  // build counter hash map
+  const results = [];
+  const counter = {};
+  nums.forEach((num) => {
+    if (counter[num]) counter[num]++;
+    else counter[num] = 1;
+  });
+  function backtracker(perm) {
+    if (perm.length === nums.length) {
+      results.push(perm);
+      return;
+    }
+    for (const num in counter) {
+      if (counter[num] > 0) {
+        counter[num] -= 1;
+        backtracker(perm.concat(+num));
+        counter[num] += 1;
+      }
+    }
+  }
+  backtracker([]);
+  return results;
+}
