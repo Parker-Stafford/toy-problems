@@ -29,8 +29,9 @@ Output:
  * @param {number} target
  * @return {number[][]}
  */
-// naive caching solution
+// naive caching solution with index stop
  var combinationSum2 = function(candidates, target) {
+  candidates.sort((a, b) => (a - b));
   let combos = [];
   let dupsMap = {};
   function backtracker(combo =[], index = 0, sum = 0) {
@@ -41,7 +42,7 @@ Output:
       return;
     }
     for (let i = index; i < candidates.length; i++){
-      if (sum + candidates[i] > target) continue;
+      if (sum + candidates[i] > target) return;
       combo.push(candidates[i])
       let copy = combo.slice();
       backtracker(copy, i + 1, sum + candidates[i])
@@ -51,3 +52,5 @@ Output:
   backtracker();
   return combos;
 };
+
+//
