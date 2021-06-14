@@ -53,4 +53,25 @@ Output:
   return combos;
 };
 
-//
+// optimized solution skipping duplicates in the current recursive call to avoid duplicate combos
+var combinationSum2 = function (candidates, target) {
+  let combos = [];
+  candidates.sort((a, b) => (a - b));
+  function backtracker(combo = [], index = 0, sum = 0) {
+    if (target === sum) {
+      combos.push(combo);
+      return;
+    }
+
+    for (let i = index; i < candidates.length; i++) {
+      if (candidates[i] + sum > target) return;
+      if (i > index && candidates[i] === candidates[i - 1]) continue;
+      combo.push(candidates[i]);
+        let copy = combo.slice();
+      backtracker(copy, i + 1, sum + candidates[i]);
+      combo.pop();
+    }
+  }
+  backtracker();
+  return combos;
+}
