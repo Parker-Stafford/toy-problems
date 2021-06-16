@@ -27,9 +27,6 @@ Constraints:
  * @return {boolean}
  */
 
-[3, 3, 3, 3]
-3
-4
  var makesquare = function(matchsticks) {
   let perimiter = matchsticks.reduce((sum, cur) => (sum + cur), 0);
   let side = perimiter / 4;
