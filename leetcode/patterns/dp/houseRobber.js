@@ -56,3 +56,24 @@ Output: 4
   traverser(0, 1);
   return max;
 };
+
+// DP
+function rob(nums) {
+  if (nums.length === 1) return nums[0];
+  // Get first two options
+  let first = nums[0];
+  // index 2 and index 3 are both available to nums[0] so there is no benefit to starting at nums[1] unless it is larger than nums[0] so last becomes the larger of the two
+  let last = Math.max(nums[0], nums[1]);
+  let sum = 0;
+  // start at 2
+  for (let i = 2; i < nums.length; i++) {
+    const cash = nums[i];
+    // sum equals the larger of the sum at the prior index OR the sum at two indices ago plus the current house
+    sum = Math.max(last, first + cash);
+    // slide each sum up one index spot
+    first = last;
+    last = sum;
+  }
+  // return last (sum) in case nums.length <= 2
+  return last;
+}
