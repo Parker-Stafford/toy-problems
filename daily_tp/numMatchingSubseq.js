@@ -70,3 +70,29 @@ var buildTrie = function(words) {
   return trieObj;
 };
 
+// two pointers solution
+var numMatchingSubseq = function(s, words) {
+  let count = 0;
+  for (const word of words) {
+    let i = 0;
+    let j = 0;
+    while (i < s.length && j < word.length) {
+      if (s[i] === word[j]) {
+        i++;
+        j++
+      } else {
+        i++;
+      }    
+      if (j >= word.length) {
+        count++;
+      }  
+    }
+  }
+  return count;
+}
+
+
+
+
+
+
