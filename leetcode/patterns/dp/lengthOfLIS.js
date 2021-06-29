@@ -37,6 +37,7 @@ Constraints:
  * @return {number}
  */
 
+// dp solution O(n2) O(n)
 var lengthOfLIS = function(nums) {
   let dp = new Array(nums.length).fill(1);
   for (let i = 0; i < nums.length; i++) {
@@ -47,4 +48,25 @@ var lengthOfLIS = function(nums) {
     }
   }
   return Math.max(...dp);
+}
+
+// intelligently build subsequence O(n*m) O(n)
+var lengthOfLIS = function(nums) {
+  let sub = [];
+  for (let i = 0; i < nums.length; i++) {
+    const num = nums[i];
+    if (!sub.length || sub[sub.length - 1] < num) {
+      sub.pop();
+      sub.push(num);
+    } else {
+      for (let j = 0; j < sub.length; j++) {
+        const newNum = sub[j];
+        if (newNum > num) {
+          sub[j] = num;
+          break;
+        }
+      }
+    }
+  }
+  return sub.length;
 }
