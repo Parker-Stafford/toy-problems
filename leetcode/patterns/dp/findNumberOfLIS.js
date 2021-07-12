@@ -31,7 +31,7 @@ Constraints:
  * @param {number[]} nums
  * @return {number}
  */
-
+// O(n^2) time O(n) space
 var findNumberOfLIS = function(nums) {
   let dp = new Array(nums.length).fill(1);
   let freqs = new Array(nums.length).fill(1);
