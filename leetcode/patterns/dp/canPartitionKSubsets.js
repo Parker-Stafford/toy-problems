@@ -27,7 +27,7 @@ var canPartitionKSubsets = function(nums, k) {
   for (const num of nums) sum += num;
   if (sum % k !== 0) return false;
   const target = sum / k;
-  // get a partition then solve again until you have k partitions
+  nums.sort((a, b) => (b - a))
   let buckets = new Array(k).fill(0);
   function backtracker(i) {
     if (i === nums.length) return true;
