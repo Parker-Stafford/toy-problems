@@ -42,30 +42,20 @@ pos is -1 or a valid index in the linked-list.
  * @param {ListNode} head
  * @return {ListNode}
  */
-var detectCycle = function(head) {
- if (!head || !head.next) return null;
- let fast = head.next;
- let slow = head;
- while (fast !== slow) {
-   fast = fast.next?.next;
-   if (!fast) return null;
-   slow = slow.next;
- }
-  slow = slow.next;
- let count = 1;
- while (fast !== slow) {
-   count++
-   slow = slow.next;
- }
- fast = head;
- slow = head;
- while (count) {
-   fast = fast.next;
-   count--;
- }
- while (fast !== slow) {
-   fast = fast.next;
-   slow = slow.next;
- }
- return slow;
-};
+ var detectCycle = function(head) {
+  if (!head || !head.next) return null;
+  let fast = head;
+  let slow = head;
+  while (fast && fast.next) {
+    fast = fast.next.next;
+    slow = slow.next;
+    if (fast === slow) break;
+  }
+  if (!fast || !fast.next) return null;
+  slow = head;
+  while (fast !== slow) {
+    fast = fast.next;
+    slow = slow.next;
+  }
+  return slow;
+ };
