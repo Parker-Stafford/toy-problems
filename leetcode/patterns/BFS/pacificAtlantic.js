@@ -45,7 +45,6 @@ var pacificAtlantic = function(heights) {
   const pacific = new Array(heights.length);
   const atlantic = new Array(heights.length);
   for (let row = 0; row < heights.length; row++) {
-    const element = heights[row];
     pacific[row] = new Array(heights[row].length).fill(0);
     atlantic[row] = new Array(heights[row].length).fill(0);
   }
