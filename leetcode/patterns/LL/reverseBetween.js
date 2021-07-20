@@ -75,10 +75,7 @@ The number of nodes in the list is n.
  * @param {number} right
  * @return {ListNode}
  */
-3,5
-p
-l
-  r    
+// O(n) O(n) because of the recursive stack for reversing
 var reverseBetween = function(head, left, right) {
   if (left === right || !head || !head.next) return head;
   // iterate until left with two pointers until we find left and right
