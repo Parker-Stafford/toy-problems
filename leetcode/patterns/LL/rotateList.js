@@ -97,3 +97,32 @@ var rotateRight = function(head, k) {
   traverse(current);
   return newHead;
 };
+
+// no recursion O(n) O(1)
+var rotateRight = function(head, k) {
+  let len = 1;
+  let tail = head;
+  // traverse to the end
+  while (tail && tail.next) {
+    len++;
+    tail = tail.next;
+  }
+  // deal with large k edge cases
+  k = k % len;
+  // if k is 0 return the original list
+  if (!k) return head;
+  // traverse until you are at the kth + 1 from last node
+  let distance = len - k;
+  let newTail = head;
+  while (distance > 1) {
+    distance--;
+    newTail = newTail.next;
+  }
+  // the new head will be the kth from last node
+  let newHead = newTail.next;
+  // the new tail kth + 1 from last node will point to null
+  newTail.next = null;
+  // the original tail will point to original head
+  tail.next = head;
+  return newHead;
+}
