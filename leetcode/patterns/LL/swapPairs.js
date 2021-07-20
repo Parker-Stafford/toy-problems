@@ -76,3 +76,12 @@ var swapPairs = function(head) {
   }
   return newHead;
 };
+
+// cool recursive solution
+var swapPairs = function(head) {
+  if (!head || !head.next) return head;
+  let c = head, n = head.next, t = n.next;
+  n.next = c;
+  c.next = swapPairs(t);
+  return n;
+}
