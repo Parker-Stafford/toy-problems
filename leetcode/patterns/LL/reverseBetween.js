@@ -119,3 +119,38 @@ var reverseBetween = function(head, left, right) {
   // if lefts previous is before the head, that means the head has been modified and we need to return lPrev.next otherwise the head is unchanged and can be returned
   return lPrev.val ? head : lPrev.next;
 };
+
+// Iterative solution O(n) O(1)
+var reverseBetween = function(head, left, right)  {
+  // create prev, current, newTail, and connector pointers
+  let connector;
+  let newTail;
+  let prev = {next: head}
+  let current = head;
+  let count = 1;
+  // iterate until current is at left node
+  while (count < left) {
+    current = current.next;
+    prev = prev.next;
+    count++;
+  }
+  // assign connector to equal prev, assign newTail to = current
+  connector = prev;
+  newTail = current;
+  // iterate until current is past right node
+  while (count <= right) {
+    // assign current.next to temp variable
+    let temp = current.next;
+    // assign current.next to equal prev
+    current.next = prev;
+    // assign prev = current
+    prev = current;
+    // assign current to equal temp
+    current = temp;
+  }
+  // connect connector to current
+  connector.next = prev;
+  // connect newTail.next = current
+  newTail.next = current;
+  return (left === 1) ? prev : head;
+}
