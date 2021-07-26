@@ -37,7 +37,7 @@ intervals[i].length == 2
  * @param {number[][]} intervals
  * @return {number}
  */
-// O(nlogn) time for sort O(1) space
+// O(nlogn) time for sort O(1) space 
 var eraseOverlapIntervals = function (intervals) {
   let removed = 0;
   intervals.sort((a, b) => (a[1] - b[1]));
@@ -49,3 +49,5 @@ var eraseOverlapIntervals = function (intervals) {
   }
   return removed;
 }
+
+// Remove interval with max end value
