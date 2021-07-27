@@ -40,6 +40,7 @@ The integer n is in the range [0, 100]. """
 
 from typing import List
 import heapq
+import collections
 
 
 class Solution:
@@ -90,4 +91,51 @@ class Solution:
             wait.append(prio)
       return computations
 
+# cool math solution
+# Answer is either max frequency - 1 * n + 1 + max freq count or the length of the tasks list
+# this is because we need to do enough tasks to get all of the max frequency tasks done with n spaces in the middle
+# regardless of how many other tasks there are
+# in the final cycle of tasks we just do all of the max freq tasks that's why we add the count to the end
+# in the event that there are more tasks total than is necessary for this, we need to complete all tasks but the cool down on the last task is not the rate limiting factor so we take len(tasks)
 
+class Solution:
+  def leastInterval(self, tasks: List[str], n: int) -> int:
+    freqs = collections.Counter(tasks)
+    freqs = list(freqs.values())
+    max_freq = max(freqs)
+    max_freq_count = 0
+    i = 0
+    # find number of max freqs
+    while(i < len(freqs)):
+      if freqs[i] == max_freq:
+        max_freq_count += 1
+      i += 1
+    return max((max_freq - 1) * (n + 1) + max_freq_count, len(tasks))
+
+
+# heap solution similar to mine above
+# in this solution instead of pushing things to a waiting queue, we just grab everything off the heap for one cycle 
+# incrementing our computations each time
+# once we've done that we subtract from the frequency and add them back to the heap
+class Solution:
+  def leastInterval(self, tasks: List[str], n: int) -> int:
+    freqs = collections.Counter(tasks)
+    freqs = list(freqs.values())
+    heap = []
+    for freq in freqs:
+      heap.append(-freq)
+    computations = 0
+    cycle = n + 1
+    heapq.heapify(heap)
+    while heap:
+      finished = []
+      tasks_completed = 0
+      for i in range(cycle):
+        if heap:
+          tasks_completed += 1
+          finished.append(heapq.heappop(heap) + 1)
+      for freq in finished:
+        if freq < 0: heapq.heappush(heap, freq)
+      # we do this because on the last cycle (when heap has nothing pushed to it) we only need to count the tasks completed not the full cycle with downtime
+      computations += cycle if heap else tasks_completed
+    return computations
