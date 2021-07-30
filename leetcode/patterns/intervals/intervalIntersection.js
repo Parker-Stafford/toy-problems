@@ -69,7 +69,7 @@ var intervalIntersection = function (first, second) {
     let lo = Math.max(first[i][0], second[j][0]);
     let hi = Math.min(first[i][1], second[j][1]);
     if (lo <= hi) intersections.push([lo, hi]);
-    if (first === hi) i++;
+    if (first[i][1] === hi) i++;
     else j++;
   }
   return intersections;
