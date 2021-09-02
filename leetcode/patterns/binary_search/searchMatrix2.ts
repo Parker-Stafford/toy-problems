@@ -55,15 +55,28 @@ function searchMatrix2(m: number[][], t: number): boolean {
 
 // bst on whole matrix
 function searchMatrix(m: number[][], t: number): boolean {
-  let colE = m.length - 1;
-  let rowE = m[0].length -1;
-  let colS = 0;
+  let rowE = m.length - 1;
+  let colE = m[0].length -1;
   let rowS = 0;
-  while ()
-  return false;
+  let colS = 0;
+  return matrixBST(m, t, rowS, rowE, colS, colE);
 }
 
+function matrixBST(m: number[][], t: number, startRow: number, endRow: number, startCol: number, endCol: number): boolean {
+  if (!m[endRow] || !m[startRow]) return false;
+  if (endRow < startRow || endCol < startCol) return false;
 
+  let midRow = Math.floor((startRow + endRow) / 2);
+  let midCol = Math.floor((startCol + endCol) / 2); 
+  
+  if (m[midRow][midCol] === t) return true;
+
+  if (m[midRow][midCol] < t) {
+    return matrixBST(m, t, midRow + 1, endRow, startCol, endCol) || matrixBST(m, t, startRow, endRow, midCol + 1, endCol)
+  } else {
+    return matrixBST(m, t, startRow, midRow - 1, startCol, endCol) || matrixBST(m, t, startRow, endRow, startCol, midCol - 1)
+  }
+}
 
 
 
