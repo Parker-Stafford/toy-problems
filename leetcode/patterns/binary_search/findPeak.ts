@@ -31,11 +31,11 @@ function findPeakElement(nums: number[]): number {
 };
 
 // moving mid by moving start and end
-function findPeakElement(nums: number[]): number {
+function findPeakElement2(nums: number[]): number {
   let s = 0;
   let e = nums.length - 1;
   while (s < e) {
-    let mid = Math.floor((l + r) / 2);
+    let mid = Math.floor((s + e) / 2);
     if (nums[mid] < nums[mid + 1]) s = mid + 1;
     else e = mid;
   }
