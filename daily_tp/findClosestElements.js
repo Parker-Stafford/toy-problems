@@ -22,7 +22,7 @@ Output: [1,2,3,4]
  * @param {number} x
  * @return {number[]}
  */
- var findClosestElements = function(arr, k, x) {
+ var findClosestElements2 = function(arr, k, x) {
   if (x < arr[0]) return arr.slice(0, k);
   if (x > arr[arr.length - 1]) return arr.slice(-k);
   if (!k) return [];  

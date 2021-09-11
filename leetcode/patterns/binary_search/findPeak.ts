@@ -31,7 +31,7 @@ function findPeakElement(nums: number[]): number {
 };
 
 // moving mid by moving start and end
-function findPeakElement(nums: number[]): number {
+function findPeakElement2(nums: number[]): number {
   let s = 0;
   let e = nums.length - 1;
   while (s < e) {
