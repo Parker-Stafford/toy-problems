@@ -19,7 +19,7 @@ Constraints:
 nums[i] != nums[i + 1] for all valid i. */
 
 // sliding mid up to peaks
-function findPeakElement(nums: number[]): number {
+function findPeakElement2(nums: number[]): number {
   if (nums.length <= 3) return nums.indexOf(Math.max(...nums));
   let mid = Math.floor(nums.length / 2);
   while (true) {
@@ -31,7 +31,7 @@ function findPeakElement(nums: number[]): number {
 };
 
 // moving mid by moving start and end
-function findPeakElement2(nums: number[]): number {
+function findPeakElement(nums: number[]): number {
   let s = 0;
   let e = nums.length - 1;
   while (s < e) {
