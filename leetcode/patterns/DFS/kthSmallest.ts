@@ -30,9 +30,24 @@ Follow up: If the BST is modified often (i.e., we can do insert and delete opera
          this.right = (right===undefined ? null : right)
      }
  }
- 
+function kthSmallest(root: TreeNode | null, k: number): number {
+  let count = 0;
+  let smallest;
+  // do inorder dfs until we get to k then return number
+  function inOrderDFS(node: TreeNode) {
+    if (!node || smallest !== undefined) return;
+    inOrderDFS(node.left);
+    if (smallest !== undefined) return;
+    count++;
+    if (count === k) smallest = node.val;
+    inOrderDFS(node.right);
+  }
+  inOrderDFS(root);
+  return smallest;
+}
+
 // binary tree, but not bst implementation
- function kthSmallest(root: TreeNode | null, k: number): number {
+ function kthSmallest1(root: TreeNode | null, k: number): number {
   // make array of length k filled with infinity
   let smallArr = new Array(k).fill(Infinity);
   // perform dfs on tree
