@@ -31,7 +31,7 @@ Follow up: If the BST is modified often (i.e., we can do insert and delete opera
      }
  }
  
-
+// binary tree, but not bst implementation
  function kthSmallest(root: TreeNode | null, k: number): number {
   // make array of length k filled with infinity
   let smallArr = new Array(k).fill(Infinity);
